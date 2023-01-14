@@ -17,11 +17,10 @@ def load_module(directory, name):
 
 
 def load_directory(directory):
-    path = Path(directory)
-    for p in path.rglob('*.py'):
-        load_module(p.as_posix(), p.stem)
+    for path in directory.rglob("*.py"):
+        load_module(directory.as_posix(), path.stem)
 
 
 def load_bundled():
-    directory = PurePath(Path(__file__).parent, 'extensions')
+    directory = Path(__file__).parent / "extensions"
     load_directory(directory)
